@@ -9,22 +9,30 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
-        return "It's a tie.";
+        return "TIE";
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You win! " + playerSelection + " beats " + computerSelection;
+        return "WIN";
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You win! " + playerSelection + " beats " + computerSelection;
+        return "WIN";
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You win! " + playerSelection + " beats " + computerSelection;
+        return "WIN";
+    } else  if (playerSelection === "paper" && computerSelection === "scissors"){
+        return "LOSE";
+    } else  if (playerSelection === "scissors" && computerSelection === "rock"){
+        return "LOSE";
+    } else  if (playerSelection === "rock" && computerSelection === "paper"){
+        return "LOSE";
     } else {
-        return "You lose! " + playerSelection + " loses to " + computerSelection;
+        return "ERROR";
     }
 }
 
 
 // const playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
 // const computerSelection = computerPlay();
-//console.log(playRound(playerSelection, computerSelection));
+// console.log(playRound(playerSelection, computerSelection));
+// console.log(playerSelection);
+// console.log(computerSelection);
 // This function will play five rounds and declare a winner of the match
 function game() {
     let playerScore = 0;
@@ -34,18 +42,28 @@ function game() {
         const playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
         const computerSelection = computerPlay();
 
-        console.log(playRound(playerSelection, computerSelection));
-        
-        if (playRound === "It's a tie.") {
+        let roundResult = playRound(playerSelection, computerSelection);
+
+        // console.log(roundResult);
+        // console.log(playerSelection + " " + computerSelection);
+
+        if (roundResult === "TIE") {
+            console.log("It's a tie. You chose " + playerSelection + " and the computer chose " + computerSelection);
             console.log(playerScore + " : " + computerScore);
-        } else if ( playRound === "You win! " + playerSelection + " beats " + computerSelection) {
+        } else if ( roundResult === "WIN") {
             playerScore++;
+            console.log("You win! " + playerSelection + " beats " + computerSelection);
             console.log(playerScore + " : " + computerScore);
-        } else if ("You lose! " + playerSelection + " loses to " + computerSelection) {
+        } else if (roundResult === "LOSE") {
             computerScore++;
+            console.log("You lose! " + playerSelection + " loses to " + computerSelection);
+            console.log(playerScore + " : " + computerScore);
+        } else {
+            console.log(playerSelection + " is not a valid choice.");
             console.log(playerScore + " : " + computerScore);
         }
     }
+
 
     if (playerScore === computerScore) {
         alert("The match is a tie!")
