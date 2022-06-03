@@ -7,7 +7,7 @@ function computerPlay() {
 
 // this function plays a single round of the game
 function playRound(playerSelection, computerSelection) {
-
+    
     if (playerSelection === computerSelection) {
         return "TIE";
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
@@ -29,49 +29,71 @@ function playRound(playerSelection, computerSelection) {
 
 
 // const playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
-// const computerSelection = computerPlay();
+// let computerSelection = computerPlay();
 // console.log(playRound(playerSelection, computerSelection));
 // console.log(playerSelection);
 // console.log(computerSelection);
 // This function will play five rounds and declare a winner of the match
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
-        const computerSelection = computerPlay();
+//     for (let i = 0; i < 5; i++) {
+//         const playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+//         const computerSelection = computerPlay();
 
-        let roundResult = playRound(playerSelection, computerSelection);
+//         let roundResult = playRound(playerSelection, computerSelection);
 
-        // console.log(roundResult);
-        // console.log(playerSelection + " " + computerSelection);
+//         // console.log(roundResult);
+//         // console.log(playerSelection + " " + computerSelection);
 
-        if (roundResult === "TIE") {
-            console.log("It's a tie. You chose " + playerSelection + " and the computer chose " + computerSelection);
-            console.log(playerScore + " : " + computerScore);
-        } else if ( roundResult === "WIN") {
-            playerScore++;
-            console.log("You win! " + playerSelection + " beats " + computerSelection);
-            console.log(playerScore + " : " + computerScore);
-        } else if (roundResult === "LOSE") {
-            computerScore++;
-            console.log("You lose! " + playerSelection + " loses to " + computerSelection);
-            console.log(playerScore + " : " + computerScore);
-        } else {
-            console.log(playerSelection + " is not a valid choice.");
-            console.log(playerScore + " : " + computerScore);
+//         if (roundResult === "TIE") {
+//             console.log("It's a tie. You chose " + playerSelection + " and the computer chose " + computerSelection);
+//             console.log(playerScore + " : " + computerScore);
+//         } else if ( roundResult === "WIN") {
+//             playerScore++;
+//             console.log("You win! " + playerSelection + " beats " + computerSelection);
+//             console.log(playerScore + " : " + computerScore);
+//         } else if (roundResult === "LOSE") {
+//             computerScore++;
+//             console.log("You lose! " + playerSelection + " loses to " + computerSelection);
+//             console.log(playerScore + " : " + computerScore);
+//         } else {
+//             console.log(playerSelection + " is not a valid choice.");
+//             console.log(playerScore + " : " + computerScore);
+//         }
+//     }
+
+
+//     if (playerScore === computerScore) {
+//         alert("The match is a tie!")
+//     } else if (playerScore > computerScore) {
+//         alert("You won the match.") 
+//     } else {
+//         alert("You lose the match.")
+//     }
+// }
+
+// game();
+
+// Runs a single round of playRound() on a user click
+let button = document.querySelectorAll(".button");
+let results = document.querySelector("#results");
+
+for (let i = 0; i < button.length; i++) {
+    button[i].addEventListener("click", () => {
+        let playerSelection = button[i].textContent.toLowerCase();
+        computerSelection = computerPlay();
+
+        playRound(playerSelection, computerSelection);
+
+        if (playRound === "TIE") {
+            results.textContent = "It's a Tie.";
+        } else if (playRound === "WIN") {
+            results.textContent = "You win against the Computer!";
+        } else if (playRound === "LOSE"){
+            results.textContent = "You lose to the computer";
         }
-    }
-
-
-    if (playerScore === computerScore) {
-        alert("The match is a tie!")
-    } else if (playerScore > computerScore) {
-        alert("You won the match.") 
-    } else {
-        alert("You lose the match.")
-    }
+    });    
 }
 
-game();
