@@ -4,6 +4,9 @@ let buttons = document.querySelectorAll(".button").length;
 // getting div element
 let div = document.querySelector("div");
 
+let hiddenDiv = document.getElementById("hiddenDiv");
+hiddenDiv.classList.add("hidden");
+
 // getting results div element
 let results = document.getElementById("results");
 
@@ -20,8 +23,8 @@ function computerPlay() {
 
 // looping through buttons that the user cllicked
 for (let i = 0; i < buttons; i++) {
-    document.querySelectorAll(".button")[i].addEventListener("click", () => {
-
+    document.querySelectorAll(".button")[i].addEventListener("click", (e) => {
+        console.log(e);
         // selecting the inner text of the button the user pressed
         let playerChoice = document.querySelectorAll(".button")[i].textContent.toLowerCase();
         let computerChoice = computerPlay();
@@ -29,23 +32,27 @@ for (let i = 0; i < buttons; i++) {
         // passing the inner text of the button and the copmuterChoice onto playRound when the user clicks one of the selection buttons.
         playerChoice.onClick = playRound(playerChoice, computerChoice);
 
-        // comparing the results of playRound and updating the score
-        if (playRound(playerChoice, computerChoice) === "tie") {
-            div.textContent = "Tie. Player: " + playerScore + ". Computer: " + computerScore;
-        } else if (playRound(playerChoice, computerChoice) === "win") {
+        // updating the results div with the match winner and displaying the reset button, and comparing results of playRound.
+        if ((playerScore < 5 && computerScore < 5) && (playRound(playerChoice, computerChoice) === "tie")) {
+            div.textContent = "It's a Tie. Player: " + playerScore + ". Computer: " + computerScore;
+        } else if ((playerScore < 5 && computerScore < 5) && (playRound(playerChoice, computerChoice) === "win")) {
             playerScore++;
-            div.textContent = "Win. Player: " + playerScore + ". Computer: " + computerScore;
-        } else {
+            div.textContent = "You Win. Player: " + playerScore + ". Computer: " + computerScore;
+        } else if ((playerScore < 5 && computerScore < 5) && (playRound(playerChoice, computerChoice) === "lose")){
             computerScore++;
-            div.textContent = "Lose. Player: " + playerScore + ". Computer: " + computerScore;        
+            div.textContent = "You Lose! Player: " + playerScore + ". Computer: " + computerScore;        
         }
 
-        // updating the results div with the match winner and displaying the reset button.
         if (computerScore === 5 && playerScore < 5) {
+            playerChoice.onClick = "";
             results.textContent = "You Lose the match.";
+            hiddenDiv.classList.remove("hidden");
         } else if (computerScore < 5 && playerScore === 5) {
-            results.textContent = "Your Win the match.";
+            playerChoice.onClick = "";
+            results.textContent = "You Win the match.";
+            hiddenDiv.classList.remove("hidden");
         }
+        
     });
 }
 
@@ -70,4 +77,3 @@ function playRound (playerSelection, computerSelection) {
         return "ERROR";
     }
 }
-

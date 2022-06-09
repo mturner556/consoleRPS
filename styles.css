@@ -1,0 +1,33 @@
+body {
+    background-color: #333377;
+    color: beige;
+    text-align: center;
+}
+
+h1 {
+    font-size: 75px;
+}
+
+button {
+    background-color: #484852;
+    color: beige;
+    font-size: large;
+    font-weight: bolder;
+    height: 75px;
+    width: 125px;
+    margin: 25px;
+    border-radius: 8px;
+}
+
+div {
+    font-size: 35px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#scoreboard {
+    display: flex;
+    flex-direction: row;
+}
