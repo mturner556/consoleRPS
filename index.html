@@ -8,25 +8,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Rock, Paper, Scissors</h1>
+    <div id="header">
+        <h1>Rock, Paper, Scissors</h1>
+    </div>
+    
+    <div id="scoreboard">
+        <div id="playerScoreboard">Player Score: </div>
+        <div id="computerScoreboard">Computer Score: </div>
+    </div>
 
-    <br>
-    <div>Player Score: </div>
-    <div>Computer Score:</div>
-
-    <button class="button">Rock</button>
-    <button class="button">Paper</button>
-    <button class="button">Scissors</button>
-
-    <br>
-    <br>
-    <div>Click a button to play</div>
-
-  
-
-    <br>
+    <div id="playerButtons">
+        <button class="button">Rock</button>
+        <button class="button">Paper</button>
+        <button class="button">Scissors</button>
+    </div>
 
     <div>
+        <div id="roundResult">Click a button to play</div>
         <div id="results">First to five wins!</div>
         <br>
         <div id="hiddenDiv">Refresh page to play again!</div>

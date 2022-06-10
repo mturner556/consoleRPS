@@ -2,10 +2,14 @@
 let buttons = document.querySelectorAll(".button").length;
 
 // getting div element
-let div = document.querySelector("div");
+let roundResult = document.getElementById("roundResult");
 
 let hiddenDiv = document.getElementById("hiddenDiv");
 hiddenDiv.classList.add("hidden");
+
+// getting player and computer scoreboards
+let playerScoreboard = document.getElementById("playerScoreboard");
+let computerScoreboard = document.getElementById("computerScoreboard");
 
 // getting results div element
 let results = document.getElementById("results");
@@ -34,13 +38,15 @@ for (let i = 0; i < buttons; i++) {
 
         // updating the results div with the match winner and displaying the reset button, and comparing results of playRound.
         if ((playerScore < 5 && computerScore < 5) && (playRound(playerChoice, computerChoice) === "tie")) {
-            div.textContent = "It's a Tie. Player: " + playerScore + ". Computer: " + computerScore;
+            roundResult.textContent = "It's a Tie. You both chose " + playerChoice + "!";
         } else if ((playerScore < 5 && computerScore < 5) && (playRound(playerChoice, computerChoice) === "win")) {
             playerScore++;
-            div.textContent = "You Win. Player: " + playerScore + ". Computer: " + computerScore;
+            playerScoreboard.textContent = "Player Score: " + playerScore;
+            roundResult.textContent = "You Win! You chose " + playerChoice + ". The Computer chose " + computerChoice;
         } else if ((playerScore < 5 && computerScore < 5) && (playRound(playerChoice, computerChoice) === "lose")){
             computerScore++;
-            div.textContent = "You Lose! Player: " + playerScore + ". Computer: " + computerScore;        
+            computerScoreboard.textContent = "Computer Score: " + computerScore;
+            roundResult.textContent = "You Lose! The Computer chose " + computerChoice + ". You chose " + playerChoice;        
         }
 
         if (computerScore === 5 && playerScore < 5) {
